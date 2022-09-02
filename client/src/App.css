@@ -1,0 +1,165 @@
+header {
+	width: 100vw;
+	height: 80px;
+	display: flex;
+	align-items: center;
+	border-bottom: var(--border);
+	background-color: white;
+	padding: 10px 40px;
+}
+header .logo {
+	font-family: 'yg-jalnan';
+	color: var(--mainColor);
+}
+main {
+	display: flex;
+	height: calc(100vh - 80px);
+}
+main .map {
+	height: 100%;
+}
+
+/* 리스트 스크롤 이벤트 */
+.tourList, .infoDetail {
+	width: 100%;
+	height: 100%;
+	overflow:overlay;
+	visibility: hidden;
+}
+.tourList::-webkit-scrollbar,
+.infoDetail::-webkit-scrollbar {
+	width: 5px;
+}
+.tourList::-webkit-scrollbar-thumb,
+.infoDetail::-webkit-scrollbar-thumb{
+	height: 20px;
+	background-color: var(--scrollColor);
+	border-radius: 100px;
+}
+.tourList:hover {
+	visibility: visible;
+}
+.tourList ul {
+	width: 100%;
+	height: 100%;
+	visibility: visible;
+}
+.infoDetail > section {
+	width: 100%;
+	position: relative;
+	visibility: visible;
+    padding: 14px 14px 28px;
+}
+.infoDetail > section::after {
+	content: "";
+	width: 100%;
+	height: 10px;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	background-color: #ddd;
+	margin-left: -14px;
+}
+.infoDetail > section:last-child:after {
+	display: none;
+}
+
+/* 리스트 */
+.tourListWrap {
+	width: 30%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	border-left: var(--border);
+	overflow: hidden;
+}
+.tourListWrap .title {
+	border-bottom: var(--border);
+	background-color: #fff;
+	padding: 16px 14px;
+}
+.tourListWrap .backBtn {
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    margin-left: -4px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+.tourListWrap .backBtn:hover {
+    background-color: #ddd;
+}
+
+/* 관광지 리스트 */
+.tourList  li {
+	border-bottom: var(--border);
+	cursor: pointer;
+	transition: all .3s ease-in-out;
+}
+.tourList  li:hover {
+	background-color: var(--bgColor);
+}
+.tourList li .tourItem {
+	font-size: 14px;
+	line-height: 1.5;
+	padding: 14px;
+}
+.tourList li .dsgnDate {
+	width: fit-content;
+	font-size: .8em;
+	font-weight: 300;
+	line-height: 1;
+	border-radius: 4px;
+	color: #fff;
+	background-color: var(--subColor);
+	padding: 3px 4px 2px;
+	margin-bottom: 6px;
+}
+.tourList li .addrRoad {
+	color: var(--gray);
+	margin-bottom: 4px;
+}
+.tourList li .tourDestIntro {
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: 2;
+  	-webkit-box-orient: vertical;
+}
+
+
+/* 관광지 상세정보 */
+.tourInfo {
+	height: max-content;
+    line-height: 1.5;
+}
+.tourInfo > * {
+    margin-bottom: 6px;
+}
+.tourInfo i {
+    color: var(--subColor)
+}
+.tourInfo .mngAgc {
+    width: 100%;
+    font-size: 14px;
+    border: var(--border);
+    border-collapse: collapse;
+}
+.tourInfo .mngAgc caption {
+    font-size: 16px;
+    text-align: left;
+}
+.tourInfo .mngAgc tr {
+    border-bottom: var(--border);
+}
+.tourInfo .mngAgc th, 
+.tourInfo .mngAgc td {
+    padding: 4px;
+}
+.tourInfo .mngAgc th{
+    font-weight: 400;
+    background-color: var(--bgColor);
+}
+
+/* 리뷰 */
