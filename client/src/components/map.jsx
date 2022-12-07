@@ -1,15 +1,24 @@
-import { useRef, useEffect, useContext } from "react";
+import { useRef, useEffect, useContext, useCallback } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {Store} from '../App';
 const {kakao} = window; // 카카오맵
 
 function Map() {
-	const value = useContext(Store);
-	console.log(kakao)
+    const ctx = useContext(Store);
+	const {datas, center, updateCenter} = ctx;
+	const {pathname} = useLocation();
+	const navigate = useNavigate();
+	console.log('pathname', pathname)
 	const divRef = useRef();
+	useCallback(() => {
+		if(pathname == '/'){
+			updateCenter({lat: 35.1599785, lng: 126.8513072})
+		}
+	}, [pathname])
 	useEffect(() => {
 		const options ={
-			center: new kakao.maps.LatLng(35.1599785, 126.8513072),
-			level: 8
+			center: new kakao.maps.LatLng(center.lat, center.lng),
+			level: pathname.startsWith('/detail') ? 4 : 8
 		}
 		const map = new kakao.maps.Map(divRef.current, options);    // 카카오맵 추가
 		
@@ -24,24 +33,30 @@ function Map() {
 
 		// 마커를 생성합니다
 		// 마커를 배열로 만들기
-		const markers = value.map(data => {
+		const markers = datas.map(data => {
 			// 영역 객체가 인수로 주어진 좌표를 포함하는지 확인한다.
 			let rst = bounds.contain(new kakao.maps.LatLng(data.lat, data.lng));
 			// console.log(rst)
 			let marker = new kakao.maps.Marker({
 				title: data.tourDestNm,
 				position: new kakao.maps.LatLng(data.lat, data.lng),
+				clickable: true
 			});
 			// marker.setMap(map);
+			kakao.maps.event.addListener(marker, 'click', function(){
+				console.log('mouseEvent',data )
+				updateCenter({lat: data.lat, lng: data.lng});
+				navigate(`/detail/${data.id}`);
+			  })
 			return marker
 		})
 		clusterer.addMarkers(markers);
 
 		// 마커가 지도 위에 표시되도록 설정합니다
-	}, [value])	// value가 바뀔 때!
+	}, [datas, center, pathname])	// value가 바뀔 때!
 
 
-	return (<section style={{width: "70%"}}>
+	return (<section className="mapWrap">
 		<div className="map" ref={divRef}></div>
 	</section> );
 }

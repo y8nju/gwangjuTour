@@ -5,7 +5,8 @@ import Review from "./review";
 import ReviewsApi from "../service/reviewsAPi";
 const reviewsApi = new ReviewsApi(); //✨❗❗
 function Detail() {
-	const value = useContext(Store);
+    const ctx = useContext(Store);
+	const {datas} = ctx;
 	const {id} = useParams();
 	const navigate = useNavigate();
 	const [reviews, setReviews] = useState();
@@ -18,14 +19,14 @@ function Detail() {
 			});
 	}, []);
 	const backHandle =() => navigate(-1); // 이전 페이지로
-	const tourInfo = value.find(data => data.id === id)	// params의 id와 data의 id와 비교해서 동일한 정보를 return
+	const tourInfo = datas.find(data => data.id === id)	// params의 id와 data의 id와 비교해서 동일한 정보를 return
 	console.log(tourInfo);
 	if(tourInfo) {  // document 타이틀 변경
 		document.title = `광주어때. :: ${tourInfo.tourDestNm}`
 	}
 
 	return ( <aside className="tourListWrap">
-	<div className="title">
+	<div className="title" style={{fontWeight: 'bold'}}>
 		<button className="backBtn" onClick={backHandle}><i className="fas fa-arrow-left"></i></button>&emsp;
 		{tourInfo ? <span>{tourInfo.tourDestNm}</span> : "정보 확인 중"}
 	</div>

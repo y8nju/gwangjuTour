@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import ReviewsList from "./reviewList";
 function Review({reviews}) {
 	console.log(reviews);

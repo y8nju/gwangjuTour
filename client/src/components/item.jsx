@@ -1,8 +1,15 @@
+import { useContext } from "react";
 import {useNavigate} from 'react-router-dom';
+import { Store } from '../App';
 
 function Item({data}) {
+	const ctx = useContext(Store);
+	const {updateCenter} = ctx;
 	const navigate = useNavigate();
-	const clickHandle = () => {		
+
+	const clickHandle = () => {	
+		const center = {lat: data.lat, lng: data.lng}
+		updateCenter(center)
 		navigate(`/detail/${data.id}`);
 	}
 	return ( <li>
