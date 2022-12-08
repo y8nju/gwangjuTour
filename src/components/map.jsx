@@ -46,7 +46,7 @@ function Map() {
 			kakao.maps.event.addListener(marker, 'click', function(){
 				console.log('mouseEvent',data )
 				updateCenter({lat: data.lat, lng: data.lng});
-				navigate(`/detail/${data.id}`);
+				navigate(`/gwangjuTour/detail/${data.id}`);
 			  })
 			return marker
 		})
