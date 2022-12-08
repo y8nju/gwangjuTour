@@ -11,14 +11,14 @@ function Map() {
 	console.log('pathname', pathname)
 	const divRef = useRef();
 	useCallback(() => {
-		if(pathname === '/'){
+		if(pathname === '/gwangjuTour/'){
 			updateCenter({lat: 35.1599785, lng: 126.8513072})
 		}
 	}, [pathname])
 	useEffect(() => {
 		const options ={
 			center: new kakao.maps.LatLng(center.lat, center.lng),
-			level: pathname.startsWith('/detail') ? 4 : 8
+			level: pathname.startsWith('/gwangjuTour/detail') ? 4 : 8
 		}
 		const map = new kakao.maps.Map(divRef.current, options);    // 카카오맵 추가
 		
