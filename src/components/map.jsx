@@ -11,7 +11,7 @@ function Map() {
 	console.log('pathname', pathname)
 	const divRef = useRef();
 	useCallback(() => {
-		if(pathname == '/'){
+		if(pathname === '/'){
 			updateCenter({lat: 35.1599785, lng: 126.8513072})
 		}
 	}, [pathname])

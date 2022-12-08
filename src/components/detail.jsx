@@ -1,23 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import {useParams, useNavigate} from "react-router-dom"
 import {Store} from '../App';
-import Review from "./review";
-import ReviewsApi from "../service/reviewsAPi";
-const reviewsApi = new ReviewsApi(); //✨❗❗
 function Detail() {
     const ctx = useContext(Store);
 	const {datas} = ctx;
 	const {id} = useParams();
 	const navigate = useNavigate();
-	const [reviews, setReviews] = useState();
-	useEffect(()=> {
-		reviewsApi.read(id)
-			.then(recv => {
-				if(recv.result) {
-					setReviews(recv.datas);
-				}
-			});
-	}, []);
 	const backHandle =() => navigate(-1); // 이전 페이지로
 	const tourInfo = datas.find(data => data.id === id)	// params의 id와 data의 id와 비교해서 동일한 정보를 return
 	console.log(tourInfo);
@@ -50,9 +38,6 @@ function Detail() {
 					</tbody>
 				</table>
 				</>) : "정보 확인 중"}
-		</section>
-		<section>
-			<Review reviews={reviews}/>
 		</section>
 	</div>
 	
