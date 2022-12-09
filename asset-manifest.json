@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gwangjuTour/static/css/main.715b0719.css",
-    "main.js": "/gwangjuTour/static/js/main.3c82b3e6.js",
+    "main.css": "/gwangjuTour/static/css/main.e6e3ec8f.css",
+    "main.js": "/gwangjuTour/static/js/main.84f23d35.js",
     "index.html": "/gwangjuTour/index.html",
-    "main.715b0719.css.map": "/gwangjuTour/static/css/main.715b0719.css.map",
-    "main.3c82b3e6.js.map": "/gwangjuTour/static/js/main.3c82b3e6.js.map"
+    "main.e6e3ec8f.css.map": "/gwangjuTour/static/css/main.e6e3ec8f.css.map",
+    "main.84f23d35.js.map": "/gwangjuTour/static/js/main.84f23d35.js.map"
   },
   "entrypoints": [
-    "static/css/main.715b0719.css",
-    "static/js/main.3c82b3e6.js"
+    "static/css/main.e6e3ec8f.css",
+    "static/js/main.84f23d35.js"
   ]
 }
