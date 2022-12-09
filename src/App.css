@@ -17,11 +17,53 @@ main {
 }
 main .mapWrap {
 	width: 70%;
+	position: relative;
 }
 main .map {
 	height: 100%;
 }
-
+main .roadViewWrap {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	z-index: 100;
+	opacity: 0;
+	transition: all 1s ease-in-out;
+}
+main .roadViewWrap.on {
+	opacity: 1;
+}
+main .roadViewWrap [id^="_box_util"]  {
+	opacity: 0;
+}
+main .roadViewWrap.on.zoom {
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	right: 0;
+}
+main .roadViewWrap.on.zoom [id^="_box_util"]  {
+	opacity: 1;
+}
+main .roadViewWrap .roadView {
+	width: 100%;
+	height: 100%;
+}
+main .roadViewWrap .zoomIcon {
+	width: 28px;
+	height: 28px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	z-index: 200;
+	background-color: #fff;
+}
+main .roadViewWrap .zoomIcon i {
+	color: var(--gray)
+}
 /* 리스트 스크롤 이벤트 */
 .tourList, .infoDetail {
 	width: 100%;
@@ -70,7 +112,7 @@ main .map {
 /* 리스트 */
 .tourListWrap {
 	width: 30%;
-	min-width: 300px;
+	min-width: 320px;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -144,6 +186,24 @@ main .map {
 .tourInfo i {
     color: var(--subColor)
 }
+.tourInfo .address {
+	display: flex;
+	align-items: center;
+}
+.tourInfo .linkRoute {
+	font-size: 0.8rem;
+	line-height: 1;
+	border-radius: 4px;
+	background-color: var(--scrollColor);
+	margin-left: auto;
+	padding: 6px 4px 4px;
+}
+.tourInfo .linkRoute a {
+	color: #fff;
+}
+.tourInfo .dot {
+	color: var(--subColor);
+}
 .tourInfo .mngAgc {
     width: 100%;
     font-size: 14px;
@@ -187,6 +247,12 @@ main .map {
 	main .mapWrap {
 		width: 100%;
 		flex: 1
+	}
+	main .roadViewWrap {
+		width: 120px;
+		height: 120px;
+		bottom: 8px;
+		right: 8px;
 	}
 	.tourListWrap {
 		width: 100%;
