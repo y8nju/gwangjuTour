@@ -84,8 +84,8 @@ function Map() {
 		<div className="map" ref={divRef}></div>
 		<div className={"roadViewWrap"+ (showRoadView ? ' on' : '') + (zoom ?  ' zoom' : '')}>
 			<div className="zoomIcon" onClick={() => setZoom(!zoom) }>
-				{zoom ? <i class="fas fa-minus"></i>:
-					<i class="fas fa-plus"></i>}
+				{zoom ? <i className="fas fa-minus"></i>:
+					<i className="fas fa-plus"></i>}
 			</div>
 			<div className="roadView" ref={roadViewRef}>
 		</div>
