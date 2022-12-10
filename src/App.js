@@ -41,8 +41,8 @@ function App() {
 				<BrowserRouter>
 					<Map />
 					<Routes>
-						<Route path='/' element={<Content />} />    {/* state.datas넘기기 */}
-						<Route path='/detail/:id' element={<Detail />} />
+						<Route path='/gwangjuTour/' element={<Content />} />    {/* state.datas넘기기 */}
+						<Route path='/gwangjuTour/detail/:id' element={<Detail />} />
 						<Route path='*' element={<Error />} />
 					</Routes>
 				</BrowserRouter>

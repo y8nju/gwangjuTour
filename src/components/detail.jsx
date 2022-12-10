@@ -1,29 +1,22 @@
+import { useRef } from "react";
 import { useContext, useEffect, useState } from "react";
 import {useParams, useNavigate} from "react-router-dom"
 import {Store} from '../App';
-import Review from "./review";
-import ReviewsApi from "../service/reviewsAPi";
-const reviewsApi = new ReviewsApi(); //✨❗❗
+const {kakao} = window; // 카카오맵
+
 function Detail() {
     const ctx = useContext(Store);
 	const {datas} = ctx;
 	const {id} = useParams();
 	const navigate = useNavigate();
-	const [reviews, setReviews] = useState();
-	useEffect(()=> {
-		reviewsApi.read(id)
-			.then(recv => {
-				if(recv.result) {
-					setReviews(recv.datas);
-				}
-			});
-	}, []);
 	const backHandle =() => navigate(-1); // 이전 페이지로
 	const tourInfo = datas.find(data => data.id === id)	// params의 id와 data의 id와 비교해서 동일한 정보를 return
 	console.log(tourInfo);
 	if(tourInfo) {  // document 타이틀 변경
 		document.title = `광주어때. :: ${tourInfo.tourDestNm}`
 	}
+
+
 
 	return ( <aside className="tourListWrap">
 	<div className="title" style={{fontWeight: 'bold'}}>
@@ -33,11 +26,18 @@ function Detail() {
 	<div className="infoDetail">
 		<section className="tourInfo">
 			{tourInfo ? (<>	{/* 분리하기✨ */}
-				<p ><span><i className="fas fa-map-marker-alt"></i></span> {tourInfo.addrRoad}</p>
+				<p className="address">
+					<span><i className="fas fa-map-marker-alt"></i></span> 
+					<span style={{marginLeft: '4px'}}>{tourInfo.addrRoad ? tourInfo.addrRoad : tourInfo.addrJibun}</span>
+					<span className="linkRoute">
+						<a href={`https://map.kakao.com/link/to/${tourInfo.tourDestNm},${tourInfo.lat},${tourInfo.lng}`}
+							target='_blank'>길찾기</a>
+					</span>
+					</p>
 				<p>{tourInfo.tourDestIntro}</p>
-				<p>지정일자: {tourInfo.dsgnDate}</p>
+				<p><span className="dot">&middot;</span> 지정일자: {tourInfo.dsgnDate}</p>
 				<table className="mngAgc">
-					<caption>관리기관</caption>
+					<caption><span className="dot">&middot;</span> 관리기관</caption>
 					<tbody>
 						<tr>
 							<th>관리기관</th>
@@ -49,10 +49,8 @@ function Detail() {
 						</tr>
 					</tbody>
 				</table>
+				
 				</>) : "정보 확인 중"}
-		</section>
-		<section>
-			<Review reviews={reviews}/>
 		</section>
 	</div>
 	

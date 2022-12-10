@@ -10,7 +10,7 @@ function Item({data}) {
 	const clickHandle = () => {	
 		const center = {lat: data.lat, lng: data.lng}
 		updateCenter(center)
-		navigate(`/detail/${data.id}`);
+		navigate(`/gwangjuTour/detail/${data.id}`);
 	}
 	return ( <li>
 		<div className="tourItem" onClick={clickHandle}>
